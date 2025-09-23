@@ -1,19 +1,554 @@
 <!DOCTYPE html>
 <html lang="fr">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SikaTech - Services Techniques à Kinshasa</title>
-  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SikaTech - Services Techniques à Kinshasa</title>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <style>
+        :root {
+            --primary-blue: #003366;
+            --primary-orange: #FF6600;
+            --white: #FFFFFF;
+            --dark-gray: #333333;
+            --light-gray: #f5f5f5;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Open Sans', sans-serif;
+            color: var(--dark-gray);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3, h4, h5, h6 {
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 700;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 15px;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 12px 28px;
+            border-radius: 5px;
+            text-decoration: none;
+            font-family: 'Montserrat', sans-serif;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 16px;
+            border: none;
+        }
+
+        .btn-orange {
+            background-color: var(--primary-orange);
+            color: var(--white);
+        }
+
+        .btn-orange:hover {
+            background-color: #e55c00;
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(255, 102, 0, 0.3);
+        }
+
+        /* Nouvelle classe pour le bouton "Devenir partenaire" */
+        .btn-secondary {
+            background-color: #4A90E2; /* Bleu vif et moderne */
+            color: var(--white);
+            box-shadow: 0 2px 8px rgba(74, 144, 226, 0.3);
+        }
+
+        .btn-secondary:hover {
+            background-color: #3A7BC8; /* Bleu légèrement plus foncé au survol */
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(74, 144, 226, 0.4);
+        }
+
+        .section {
+            padding: 80px 0;
+        }
+
+        .text-center {
+            text-align: center;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: linear-gradient(rgba(0, 51, 102, 0.8), rgba(0, 51, 102, 0.8)), url('https://images.unsplash.com/photo-1581092918056-0c4c3acd3789?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') center/cover no-repeat;
+            color: var(--white);
+            padding: 120px 0;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            line-height: 1.2;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 700px;
+            margin: 0 auto 40px;
+        }
+
+        .hero-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+        }
+
+        /* Services Section */
+        .services {
+            background-color: var(--white);
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .service-card {
+            background: var(--white);
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            text-align: center;
+            transition: transform 0.3s ease;
+        }
+
+        .service-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .service-icon {
+            font-size: 2.5rem;
+            margin-bottom: 20px;
+            color: var(--primary-orange);
+        }
+
+        .service-card h3 {
+            margin-bottom: 15px;
+            color: var(--primary-blue);
+        }
+
+        /* Features Section */
+        .features {
+            background-color: var(--light-gray);
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 50px;
+        }
+
+        .feature-item {
+            text-align: center;
+            padding: 30px 20px;
+        }
+
+        .feature-icon {
+            font-size: 2.5rem;
+            color: var(--primary-orange);
+            margin-bottom: 15px;
+        }
+
+        .feature-item h3 {
+            color: var(--primary-blue);
+            margin-bottom: 10px;
+        }
+
+        /* Testimonials Section */
+        .testimonials {
+            background-color: var(--white);
+        }
+
+        .testimonials-container {
+            max-width: 800px;
+            margin: 50px auto 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+        }
+
+        .testimonial {
+            background: var(--light-gray);
+            padding: 30px;
+            border-radius: 8px;
+            position: relative;
+        }
+
+        .testimonial::before {
+            content: """;
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 5rem;
+            color: var(--primary-orange);
+            opacity: 0.2;
+            font-family: serif;
+        }
+
+        .testimonial p {
+            font-style: italic;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .testimonial-author {
+            font-weight: 600;
+            color: var(--primary-blue);
+        }
+
+        /* App Section */
+        .app-section {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            text-align: center;
+        }
+
+        .app-container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin-top: 50px;
+        }
+
+        .app-content {
+            flex: 1;
+            min-width: 300px;
+        }
+
+        .app-content h2 {
+            margin-bottom: 20px;
+        }
+
+        .app-mockup {
+            flex: 1;
+            min-width: 300px;
+            text-align: center;
+        }
+
+        .app-mockup img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* Footer */
+        footer {
+            background-color: var(--primary-blue);
+            color: var(--white);
+            padding: 60px 0 30px;
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+
+        .footer-column h3 {
+            margin-bottom: 20px;
+            font-size: 1.2rem;
+        }
+
+        .footer-links a {
+            display: block;
+            color: var(--white);
+            text-decoration: none;
+            margin-bottom: 10px;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--primary-orange);
+        }
+
+        .contact-info {
+            line-height: 2;
+        }
+
+        .social-icons {
+            display: flex;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .social-icons a {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 40px;
+            height: 40px;
+            background-color: var(--primary-orange);
+            color: var(--white);
+            border-radius: 50%;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .social-icons a:hover {
+            background-color: #e55c00;
+            transform: translateY(-3px);
+        }
+
+        .copyright {
+            text-align: center;
+            padding-top: 30px;
+            border-top: 1px solid rgba(255,255,255,0.1);
+            font-size: 0.9rem;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .hero-buttons {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .btn {
+                width: 100%;
+                max-width: 300px;
+                margin-bottom: 15px;
+            }
+
+            .app-container {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .testimonials-container {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Animation */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate {
+            animation: fadeInUp 0.8s ease forwards;
+        }
+    </style>
 </head>
 <body>
-  <h1>Des services de maintenance rapides et fiables à Kinshasa</h1>
-  <p>Réservez un artisan qualifié ou rejoignez notre réseau en quelques clics.</p>
-  <a href="https://wa.me/243811011549?text=Bonjour%20SikaTech" target="_blank">📲 Réservez sur WhatsApp</a>
-  <footer>
-    <p>📧 contact@sikatechcd.com | 📞 +243 811 011 549 | 📍 9, avenue Boboozo, Limete, Kinshasa</p>
-    <p>&copy; 2025 SikaTech. Tous droits réservés.</p>
-  </footer>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <h1>Des services de maintenance rapides et fiables à Kinshasa</h1>
+            <p>Réservez un artisan qualifié ou rejoignez notre réseau en quelques clics.</p>
+            <div class="hero-buttons">
+                <a href="https://wa.me/243811011549?text=Bonjour%20SikaTech,%20je%20souhaite%20réserver%20un%20service" class="btn btn-orange" target="_blank">
+                    📲 Réservez sur WhatsApp
+                </a>
+                <a href="#artisan-form" class="btn btn-secondary">
+                    🤝 Devenir partenaire
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services section">
+        <div class="container">
+            <h2 class="text-center" style="color: var(--primary-blue); margin-bottom: 50px;">Nos Services</h2>
+            <div class="services-grid">
+                <div class="service-card animate">
+                    <div class="service-icon">🏡</div>
+                    <h3>Particuliers</h3>
+                    <p>Électricité, plomberie, électroménager. Réservez un technicien qualifié en quelques clics.</p>
+                    <a href="https://wa.me/243811011549?text=Bonjour%20SikaTech,%20je%20souhaite%20réserver%20un%20service" class="btn btn-orange" style="margin-top: 20px;" target="_blank">Réservez maintenant</a>
+                </div>
+                
+                <div class="service-card animate">
+                    <div class="service-icon">🏢</div>
+                    <h3>Entreprises</h3>
+                    <p>Contrats de maintenance, interventions régulières, facturation transparente.</p>
+                    <a href="mailto:contact@sikatechcd.com" class="btn btn-secondary" style="margin-top: 20px;">Demander un devis</a>
+                </div>
+                
+                <div class="service-card animate">
+                    <div class="service-icon">🛠️</div>
+                    <h3>Artisans</h3>
+                    <p>Clientèle régulière, paiements sécurisés, formation continue.</p>
+                    <a href="#artisan-form" class="btn btn-secondary" style="margin-top: 20px;">Devenir partenaire</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose SikaTech Section -->
+    <section class="features section">
+        <div class="container">
+            <h2 class="text-center" style="color: var(--primary-blue); margin-bottom: 50px;">Pourquoi choisir SikaTech ?</h2>
+            <div class="features-grid">
+                <div class="feature-item animate">
+                    <div class="feature-icon">⏱️</div>
+                    <h3>Rapidité</h3>
+                    <p>Interventions sous 24h</p>
+                </div>
+                
+                <div class="feature-item animate">
+                    <div class="feature-icon">🔒</div>
+                    <h3>Sécurité</h3>
+                    <p>Artisans vérifiés et assurés</p>
+                </div>
+                
+                <div class="feature-item animate">
+                    <div class="feature-icon">📲</div>
+                    <h3>Simplicité</h3>
+                    <p>Réservation par app ou WhatsApp</p>
+                </div>
+                
+                <div class="feature-item animate">
+                    <div class="feature-icon">💳</div>
+                    <h3>Flexibilité</h3>
+                    <p>Paiement mobile ou espèces</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials section">
+        <div class="container">
+            <h2 class="text-center" style="color: var(--primary-blue); margin-bottom: 50px;">Ils témoignent</h2>
+            <div class="testimonials-container">
+                <div class="testimonial animate">
+                    <p>Grâce à SikaTech, j'ai trouvé un électricien en 15 minutes !</p>
+                    <div class="testimonial-author">- Marie, Kinshasa</div>
+                </div>
+                
+                <div class="testimonial animate">
+                    <p>Mon activité a doublé grâce à SikaTech.</p>
+                    <div class="testimonial-author">- Jean-Pierre, Électricien partenaire</div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- App Section -->
+    <section class="app-section section">
+        <div class="container">
+            <h2 class="text-center" style="margin-bottom: 50px;">Téléchargez notre application</h2>
+            <div class="app-container">
+                <div class="app-content">
+                    <p>Gérez vos demandes de service, suivez vos techniciens et payez en toute sécurité directement depuis votre smartphone.</p>
+                    <a href="#" class="btn btn-orange" style="margin-top: 30px;">Téléchargez l'app SikaTech</a>
+                </div>
+                <div class="app-mockup">
+                    <!-- Placeholder for app mockup - replace with actual image -->
+                    <img src="https://via.placeholder.com/300x600/f5f5f5/333333?text=App+SikaTech" alt="Application SikaTech">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer id="artisan-form">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-column">
+                    <h3>Contact</h3>
+                    <div class="contact-info">
+                        <p>📧 contact@sikatechcd.com</p>
+                        <p>📞 +243 811 011 549</p>
+                        <p>📍 9, avenue Boboozo, Quartier Industriel, Limete, Kinshasa</p>
+                        <a href="https://wa.me/243811011549?text=Bonjour%20SikaTech,%20je%20souhaite%20réserver%20un%20service" target="_blank" style="color: var(--primary-orange);">💬 WhatsApp Business</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Liens Rapides</h3>
+                    <div class="footer-links">
+                        <a href="#">À propos</a>
+                        <a href="#">Services</a>
+                        <a href="#artisan-form">Devenir Artisan</a>
+                        <a href="#">Blog</a>
+                        <a href="#">Politique de confidentialité</a>
+                    </div>
+                </div>
+                
+                <div class="footer-column">
+                    <h3>Suivez-nous</h3>
+                    <div class="social-icons">
+                        <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="#" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+                    </div>
+                    <p style="margin-top: 20px;">Rejoignez notre communauté pour les dernières mises à jour et offres spéciales.</p>
+                </div>
+            </div>
+            
+            <div class="copyright">
+                <p>&copy; 2024 SikaTech. Tous droits réservés.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Add animation on scroll
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.animate');
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.style.opacity = 1;
+                        entry.target.style.transform = 'translateY(0)';
+                    }
+                });
+            }, { threshold: 0.1 });
+            
+            animateElements.forEach(el => {
+                el.style.opacity = 0;
+                el.style.transform = 'translateY(30px)';
+                el.style.transition = 'opacity 0.6s ease, transform 0.6s ease';
+                observer.observe(el);
+            });
+        });
+    </script>
 </body>
 </html>
